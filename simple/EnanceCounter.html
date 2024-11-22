@@ -1,0 +1,109 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <h2>Counter: <span id="counter">0</span></h2>
+        <button onclick="decrement()">-</button>
+        <button onclick="reset()">Reset</button>
+        <button onclick="increment()">+</button>
+        <p id="message" style="display: none; color: red;"></p>
+    </div>
+
+
+    <script>
+        // 1. Add more variables to track limits
+let count = 0;
+const MIN_VALUE = -10;
+const MAX_VALUE = 10;
+
+// 2. Enhanced increment with validation
+function increment() {
+    if (count < MAX_VALUE) {
+        count += 1;
+        updateDisplay();
+        updateColor();
+    } else {
+        showMessage("Maximum value reached!");
+    }
+}
+
+// 3. Enhanced decrement with validation
+function decrement() {
+    if (count > MIN_VALUE) {
+        count -= 1;
+        updateDisplay();
+        updateColor();
+    } else {
+        showMessage("Minimum value reached!");
+    }
+}
+
+// 4. Reset function remains simple
+function reset() {
+    count = 0;
+    updateDisplay();
+    updateColor();
+    hideMessage();
+}
+
+// 5. New function to update display
+function updateDisplay() {
+    const counterDisplay = document.getElementById('counter');
+    counterDisplay.textContent = count;
+}
+
+// 6. New function to update color based on value
+function updateColor() {
+    const counterDisplay = document.getElementById('counter');
+    if (count > 0) {
+        counterDisplay.style.color = 'green';
+    } else if (count < 0) {
+        counterDisplay.style.color = 'red';
+    } else {
+        counterDisplay.style.color = 'black';
+    }
+}
+
+// 7. Functions to handle messages
+function showMessage(text) {
+    const messageElement = document.getElementById('message');
+    messageElement.textContent = text;
+    messageElement.style.display = 'block';
+}
+
+function hideMessage() {
+    const messageElement = document.getElementById('message');
+    messageElement.style.display = 'none';
+}
+
+
+
+    </script>
+</body>
+</html>
