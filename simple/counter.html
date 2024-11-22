@@ -1,0 +1,84 @@
+<!-- // 1. Basic Variables and Functions
+let count = 0;
+
+// Simple function to increment counter
+function increment() {
+    count = count + 1;  // or count += 1
+    updateDisplay();
+}
+
+// Simple function to decrement counter
+function decrement() {
+    count = count - 1;  // or count -= 1
+    updateDisplay();
+}
+
+// Function to reset counter
+function reset() {
+    count = 0;
+    updateDisplay();
+}
+
+// Update the display
+function updateDisplay() {
+    document.getElementById('counter').textContent = count;
+}
+
+// 2. DOM Manipulation
+// Add this HTML to your page:
+/*
+<div>
+    <h2>Counter: <span id="counter">0</span></h2>
+    <button onclick="decrement()">-</button>
+    <button onclick="reset()">Reset</button>
+    <button onclick="increment()">+</button>
+</div>
+*/ -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <h2>Counter: <span id="counter">0</span></h2>
+        <button onclick="decrement()">-</button>
+        <button onclick="reset()">Reset</button>
+        <button onclick="increment()">+</button>
+    </div>
+    <script>
+        let count = 0;
+
+        // Simple function to increment counter
+        function increment() {
+            count = count + 1;  // or count += 1
+            updateDisplay();
+        }
+
+        // Simple function to decrement counter
+        function decrement() {
+            count = count - 1;  // or count -= 1
+            updateDisplay();
+        }
+
+        // Function to reset counter
+        function reset() {
+            count = 0;
+            updateDisplay();
+        }
+
+        // Update the display
+        function updateDisplay() {
+            document.getElementById('counter').textContent = count;
+        }
+
+    </script>
+</body>
+
+</html>
