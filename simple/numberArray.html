@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <input type="number" id="numberInput">
+        <button onclick="addNumber(document.getElementById('numberInput').value)">Add Number</button>
+        <button onclick="clearNumbers()">Clear All</button>
+        <div id="stats"></div>
+    </div>
+
+
+    <script>
+        // Create a number analyzer that processes an array of numbers
+        let numbers = [];
+
+        function addNumber(num) {
+            numbers.push(Number(num));
+            updateStats();
+        }
+
+        function updateStats() {
+            const total = numbers.reduce((sum, num) => sum + num, 0);
+            const average = numbers.length > 0 ? total / numbers.length : 0;
+            const max = Math.max(...numbers);
+            const min = Math.min(...numbers);
+
+            document.getElementById('stats').innerHTML = `
+        Numbers: ${numbers.join(', ')}<br>
+        Count: ${numbers.length}<br>
+        Sum: ${total}<br>
+        Average: ${average.toFixed(2)}<br>
+        Max: ${max}<br>
+        Min: ${min}
+    `;
+        }
+
+        function clearNumbers() {
+            numbers = [];
+            updateStats();
+        }
+
+
+    </script>
+</body>
+
+</html>
