@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <form id="contactForm" onsubmit="event.preventDefault(); addContact(
+            this.name.value,
+            this.email.value,
+            this.phone.value
+        )">
+            <input type="text" name="name" placeholder="Name">
+            <input type="email" name="email" placeholder="Email">
+            <input type="tel" name="phone" placeholder="Phone">
+            <button type="submit">Add Contact</button>
+        </form>
+        <div id="error" style="color: red;"></div>
+        <div id="contactList"></div>
+    </div>
+    <script>
+
+
+        // Create a simple contact manager
+        const contacts = [];
+
+        function addContact(name, email, phone) {
+            // Create contact object
+            const contact = {
+                id: Date.now(),  // Generate unique ID
+                name: name.trim(),
+                email: email.trim().toLowerCase(),
+                phone: phone.trim(),
+                createdAt: new Date().toLocaleDateString()
+            };
+
+            // Validate
+            if (!isValidContact(contact)) {
+                showError("Please fill all fields correctly");
+                return;
+            }
+
+            contacts.push(contact);
+            displayContacts();
+            clearForm();
+        }
+
+        function isValidContact(contact) {
+            return contact.name.length > 0 &&
+                contact.email.includes('@') &&
+                contact.phone.length >= 10;
+        }
+
+        function deleteContact(id) {
+            const index = contacts.findIndex(contact => contact.id === id);
+            if (index !== -1) {
+                contacts.splice(index, 1);
+                displayContacts();
+            }
+        }
+
+        function displayContacts() {
+            const contactList = document.getElementById('contactList');
+            contactList.innerHTML = contacts.map(contact => `
+        <div class="contact">
+            <p>Name: ${contact.name}</p>
+            <p>Email: ${contact.email}</p>
+            <p>Phone: ${contact.phone}</p>
+            <button onclick="deleteContact(${contact.id})">Delete</button>
+        </div>
+    `).join('');
+        }
+
+        function showError(message) {
+            const errorDiv = document.getElementById('error');
+            errorDiv.textContent = message;
+            setTimeout(() => errorDiv.textContent = '', 3000);
+        }
+
+        function clearForm() {
+            document.getElementById('contactForm').reset();
+        }
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>
